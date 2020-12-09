@@ -25,7 +25,7 @@ Note that in this case k refers to the time.
 
 The python code in flow_euquation_parser.py generates a tree in a pandas dataframe out of this expression (example for the first ordinary differential equation):
 
-...
+![alt text](doc/operation_tree.jpg)
 
 Based on this tree, thrust cuda code is generated with the help of the code in thrust_meta_programmer.py
 

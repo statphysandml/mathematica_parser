@@ -16,7 +16,7 @@ with:
 
 which results in a chaotic solution.
 
-The equations are exported from the Mathematica file with the FullForm (see notebooks/lorentz_attractor.nb). The resulting output is (see examples/flow_equations/lorentz_attractor):
+The equations are exported from the Mathematica file with the FullForm (see mathematica_notebooks/lorentz_attractor.nb). The resulting output is (see examples/flow_equations/lorentz_attractor):
 
 ```text
 List[Equal[Derivative[1][x][k], Times[10.`, Plus[Times[-1, x[k]], y[k]]]], Equal[Derivative[1][y][k], Plus[Times[-1, y[k]], Times[x[k], Plus[28.`, Times[-1, z[k]]]]]], Equal[Derivative[1][z][k], Plus[Times[x[k], y[k]], Times[Rational[-8, 3], z[k]]]]]

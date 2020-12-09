@@ -31,7 +31,7 @@ struct comp_func_lorentz_attractor0
 	__host__ __device__
 	void operator()(Tuple t)
 	{
-		thrust::get<3>(t) = (-1 * thrust::get<2>(t)) + (thrust::get<0>(t) * (28 + (-1 * thrust::get<1>(t))));
+		thrust::get<3>(t) = (-1 * thrust::get<2>(t)) + (thrust::get<1>(t) * (28 + (-1 * thrust::get<0>(t))));
 	}
 };
 
@@ -42,7 +42,7 @@ struct LorentzAttractorFlowEquation1 : public FlowEquation
 
 	void operator() (DimensionIteratorC &derivatives, const DevDatC &variables) override
 	{
-		thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[0].begin(), variables[2].begin(), variables[1].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[0].end(), variables[2].end(), variables[1].end(), derivatives.end())), comp_func_lorentz_attractor0());
+		thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[1].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[1].end(), derivatives.end())), comp_func_lorentz_attractor0());
 	}
 
 private:
@@ -62,7 +62,7 @@ struct comp_func_lorentz_attractor1
 	__host__ __device__
 	void operator()(Tuple t)
 	{
-		thrust::get<3>(t) = (thrust::get<0>(t) * thrust::get<2>(t)) + (const_expr0 * thrust::get<1>(t));
+		thrust::get<3>(t) = (thrust::get<1>(t) * thrust::get<2>(t)) + (const_expr0 * thrust::get<0>(t));
 	}
 };
 
@@ -74,7 +74,7 @@ struct LorentzAttractorFlowEquation2 : public FlowEquation
 
 	void operator() (DimensionIteratorC &derivatives, const DevDatC &variables) override
 	{
-		thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[0].begin(), variables[2].begin(), variables[1].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[0].end(), variables[2].end(), variables[1].end(), derivatives.end())), comp_func_lorentz_attractor1(const_expr0));
+		thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[1].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[1].end(), derivatives.end())), comp_func_lorentz_attractor1(const_expr0));
 	}
 
 private:

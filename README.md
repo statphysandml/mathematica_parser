@@ -48,7 +48,7 @@ private:
 
 The computation of the first ordinary differential equation can be recognized in the lambda expression of the flow equation.
 
-Support and development
+Support and Development
 ----------------------
 
 An executable example will follow soon. If you want to use the project already, do not hesitate to contact us per mail for help: statphysandml@thphys.uni-heidelberg.de.

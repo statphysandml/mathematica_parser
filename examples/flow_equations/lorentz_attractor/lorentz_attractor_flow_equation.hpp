@@ -4,122 +4,87 @@
 #include <math.h>
 #include <tuple>
 
-#include "../../../thrust_code/include/flow_equation_interface/flow_equation.hpp"
+#include <flow_equation_interface/flow_equation.hpp>
+
 
 struct LorentzAttractorFlowEquation0 : public FlowEquation
 {
-	LorentzAttractorFlowEquation0(const cudaT k_) : k(k_)
+	LorentzAttractorFlowEquation0(const cudaT k) : k_(k)
 	{}
 
-	void operator() (DimensionIteratorC &derivatives, const DevDatC &variables) override
-	{
-		thrust::transform(variables[0].begin(), variables[0].end(), variables[1].begin(), derivatives.begin(), [] __host__ __device__ (const cudaT &val1, const cudaT &val2) { return 10 * ((-1 * val1) + val2); });
-	}
+	void operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables) override;
 
 private:
-	const cudaT k;
-
+	const cudaT k_;
 };
 
-
-struct comp_func_lorentz_attractor0
-{
-	comp_func_lorentz_attractor0()
-	{}
-
-	template <typename Tuple>
-	__host__ __device__
-	void operator()(Tuple t)
-	{
-		thrust::get<3>(t) = (-1 * thrust::get<2>(t)) + (thrust::get<1>(t) * (28 + (-1 * thrust::get<0>(t))));
-	}
-};
 
 struct LorentzAttractorFlowEquation1 : public FlowEquation
 {
-	LorentzAttractorFlowEquation1(const cudaT k_) : k(k_)
+	LorentzAttractorFlowEquation1(const cudaT k) : k_(k)
 	{}
 
-	void operator() (DimensionIteratorC &derivatives, const DevDatC &variables) override
-	{
-		thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[1].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[1].end(), derivatives.end())), comp_func_lorentz_attractor0());
-	}
+	void operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables) override;
 
 private:
-	const cudaT k;
-
+	const cudaT k_;
 };
 
-
-struct comp_func_lorentz_attractor1
-{
-	const cudaT const_expr0;
-
-	comp_func_lorentz_attractor1(const cudaT const_expr0_)
-		: const_expr0(const_expr0_) {}
-
-	template <typename Tuple>
-	__host__ __device__
-	void operator()(Tuple t)
-	{
-		thrust::get<3>(t) = (thrust::get<1>(t) * thrust::get<2>(t)) + (const_expr0 * thrust::get<0>(t));
-	}
-};
 
 struct LorentzAttractorFlowEquation2 : public FlowEquation
 {
-	LorentzAttractorFlowEquation2(const cudaT k_) : k(k_),
-		const_expr0(-8*1.0/3)
+	LorentzAttractorFlowEquation2(const cudaT k) : k_(k),
+		const_expr0_(-8*1.0/3)
 	{}
 
-	void operator() (DimensionIteratorC &derivatives, const DevDatC &variables) override
-	{
-		thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[1].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[1].end(), derivatives.end())), comp_func_lorentz_attractor1(const_expr0));
-	}
+	void operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables) override;
 
 private:
-	const cudaT k;
-
-	const cudaT const_expr0;
+	const cudaT k_;
+	const cudaT const_expr0_;
 };
+
 
 class LorentzAttractorFlowEquations : public FlowEquationsWrapper
 {
 public:
-	LorentzAttractorFlowEquations(const cudaT k_) : k(k_)
+	LorentzAttractorFlowEquations(const cudaT k) : k_(k)
 	{
-		flow_equations = std::vector< FlowEquation* > {
-			new LorentzAttractorFlowEquation0(k),
-			new LorentzAttractorFlowEquation1(k),
-			new LorentzAttractorFlowEquation2(k)
+		flow_equations_ = std::vector<std::shared_ptr<FlowEquation>> {
+			std::make_shared<LorentzAttractorFlowEquation0>(k_),
+			std::make_shared<LorentzAttractorFlowEquation1>(k_),
+			std::make_shared<LorentzAttractorFlowEquation2>(k_)
 		};
 	}
 
-	void operator() (DimensionIteratorC &derivatives, const DevDatC &variables, const int dim_index) override
+	void operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables, const int dim_index) override
 	{
-		(*flow_equations[dim_index])(derivatives, variables);
+		(*flow_equations_[dim_index])(derivatives, variables);
 	}
 
-	uint8_t get_dim() override
+	size_t get_dim() override
 	{
-		return dim;
+		return dim_;
 	}
 
-	bool pre_installed_theory()
-	{
-		return false;
-	}
+	static std::string model_;
+	static size_t dim_;
+	static std::string explicit_variable_;
+	static std::vector<std::string> explicit_functions_;
 
-	static std::string name()
+	json get_json() const override
 	{
-		return "lorentz_attractor";
+		return json {
+			{"model", model_},
+			{"dim", dim_},
+			{"explicit_variable", explicit_variable_},
+			{"explicit_functions", explicit_functions_}
+		};
 	}
-
-	const static uint8_t dim = 3;
 
 private:
-	const cudaT k;
-	std::vector < FlowEquation* > flow_equations;
+	const cudaT k_;
+	std::vector<std::shared_ptr<FlowEquation>> flow_equations_;
 };
 
-# endif //PROJECT_LORENTZATTRACTORFLOWEQUATION_HPP
+#endif //PROJECT_LORENTZATTRACTORFLOWEQUATION_HPP

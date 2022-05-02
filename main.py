@@ -84,7 +84,7 @@ def json_to_file(file, data):
         json.dump(data, outfile, indent=4, separators=(',', ': '))
 
 
-def generate_equations(theory, project_path="../projects/", ode_solver_path="../../../", equation_path=None, custom=True, max_num_of_terms=10, max_num_of_term_operations=40):
+def generate_equations(theory, project_path="../projects/", ode_solver_path="../../../", equation_path=None, custom=True, max_num_of_terms=9, max_num_of_term_operations=40):
     from flow_equation_parser import FlowEquationParser
     from thrust_meta_programmer import FlowEquationMetaProgrammer, JacobianEquationMetaProgrammer
 
@@ -101,7 +101,7 @@ def generate_equations(theory, project_path="../projects/", ode_solver_path="../
     dim = 0
     for equality_kind, equality_content in raw_flow_equation_generator:
         print(equality_kind, equality_content)
-        if equality_kind is "Equality":
+        if equality_kind == "Equality":
             flow_equation_parser = FlowEquationParser(
                 expression_kind="flow_equation",
                 equality_content=equality_content
@@ -109,32 +109,38 @@ def generate_equations(theory, project_path="../projects/", ode_solver_path="../
             flow_equation_parser.extract_time_variable_and_couplings()
             dim += 1
 
-    ''' Write global_parameters.json file'''
-    time_variable, couplings = FlowEquationParser.get_time_variable_and_couplings()
-    json_to_file(file=equation_path + "global_parameters", data={
-        "dim": dim,
-        "theory": theory,
-        "explicit_variable": time_variable,
-        "explicit_functions": couplings,
-        "k": 1,
-    })
+    # ''' Write global_parameters.json file'''
+    # time_variable, couplings = FlowEquationParser.get_time_variable_and_couplings()
+    # json_to_file(file=equation_path + "global_parameters", data={
+    #     "dim": dim,
+    #     "theory": theory,
+    #     "explicit_variable": time_variable,
+    #     "explicit_functions": couplings,
+    #     "k": 1,
+    # })
 
     ''' Write thrust modules for the computation of the evaluation of the flow equations '''
 
+    time_variable, couplings = FlowEquationParser.get_time_variable_and_couplings()
     flow_equation_meta_programmer = FlowEquationMetaProgrammer(
         project_path=project_path,
         ode_solver_path=ode_solver_path,
         custom=custom,
         theory_name=theory,
         dim=dim,
+        time_variable=time_variable,
+        coupling_names=couplings,
         base_struct_name="FlowEquation"
     )
+
+    flow_equation_meta_programmer.write_hpp_header()
+    flow_equation_meta_programmer.write_cu_header()
 
     dim_index = 0
     raw_flow_equation_generator = flow_equation_generator(folder=equation_path, filename="/flow_equations.txt")
     for equality_kind, equality_content in raw_flow_equation_generator:
         print(equality_kind, equality_content)
-        if equality_kind is "Equality":
+        if equality_kind == "Equality":
             flow_equation_parser = FlowEquationParser(
                 expression_kind="flow_equation",
                 equality_content=equality_content,
@@ -149,10 +155,7 @@ def generate_equations(theory, project_path="../projects/", ode_solver_path="../
             )
         dim_index += 1
 
-    flow_equation_meta_programmer.write_footer()
-
-    if custom is True:
-        flow_equation_meta_programmer.write_src_file()
+    flow_equation_meta_programmer.write_hpp_footer()
 
     ''' Write thrust modules for the computation of the Jacobian matrix '''
 
@@ -164,6 +167,9 @@ def generate_equations(theory, project_path="../projects/", ode_solver_path="../
         dim=dim,
         base_struct_name="JacobianEquation"
     )
+
+    jacobian_equation_meta_programmer.write_hpp_header()
+    jacobian_equation_meta_programmer.write_cu_header()
 
     raw_jacobian_generator = jacobian_generator(folder=equation_path, filename="jacobian.txt")
     for matrix_idx, (jacobian_idx, jacobian_element) in enumerate(raw_jacobian_generator):
@@ -181,10 +187,7 @@ def generate_equations(theory, project_path="../projects/", ode_solver_path="../
             flow_equation_parser=jacobian_parser
         )
 
-    jacobian_equation_meta_programmer.write_footer()
-
-    if custom is True:
-        jacobian_equation_meta_programmer.write_src_file()
+    jacobian_equation_meta_programmer.write_hpp_footer()
 
 
 if __name__ == "__main__":
@@ -204,5 +207,5 @@ if __name__ == "__main__":
                                max_num_of_term_operations=int(sys.argv[3]), project_path=sys.argv[4],
                                ode_solver_path=sys.argv[5])
     else:
-        generate_equations(theory="lorentz_attractor", project_path="./examples/", ode_solver_path="../..")
+        generate_equations(theory="four_point_system", project_path="./examples/", ode_solver_path="../..")
         pass

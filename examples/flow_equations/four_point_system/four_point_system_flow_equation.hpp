@@ -4,10 +4,10 @@
 #include <math.h>
 #include <tuple>
 
-#include <flow_equation_interface/flow_equation.hpp>
+#include <odesolver/flow_equations/flow_equation.hpp>
 
 
-struct FourPointSystemFlowEquation0 : public FlowEquation
+struct FourPointSystemFlowEquation0 : public odesolver::flowequations::FlowEquation
 {
 	FourPointSystemFlowEquation0(const cudaT k) : k_(k),
 		const_expr0_(-2 * (pow(M_PI, -1))),
@@ -25,7 +25,7 @@ private:
 };
 
 
-struct FourPointSystemFlowEquation1 : public FlowEquation
+struct FourPointSystemFlowEquation1 : public odesolver::flowequations::FlowEquation
 {
 	FourPointSystemFlowEquation1(const cudaT k) : k_(k),
 		const_expr0_(-1*1.0/2),
@@ -59,7 +59,7 @@ private:
 };
 
 
-struct FourPointSystemFlowEquation2 : public FlowEquation
+struct FourPointSystemFlowEquation2 : public odesolver::flowequations::FlowEquation
 {
 	FourPointSystemFlowEquation2(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/5),
@@ -107,7 +107,7 @@ private:
 };
 
 
-struct FourPointSystemFlowEquation3 : public FlowEquation
+struct FourPointSystemFlowEquation3 : public odesolver::flowequations::FlowEquation
 {
 	FourPointSystemFlowEquation3(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -131,7 +131,7 @@ private:
 };
 
 
-struct FourPointSystemFlowEquation4 : public FlowEquation
+struct FourPointSystemFlowEquation4 : public odesolver::flowequations::FlowEquation
 {
 	FourPointSystemFlowEquation4(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -169,12 +169,12 @@ private:
 };
 
 
-class FourPointSystemFlowEquations : public FlowEquationsWrapper
+class FourPointSystemFlowEquations : public odesolver::flowequations::FlowEquationsWrapper
 {
 public:
 	FourPointSystemFlowEquations(const cudaT k) : k_(k)
 	{
-		flow_equations_ = std::vector<std::shared_ptr<FlowEquation>> {
+		flow_equations_ = std::vector<std::shared_ptr<odesolver::flowequations::FlowEquation>> {
 			std::make_shared<FourPointSystemFlowEquation0>(k_),
 			std::make_shared<FourPointSystemFlowEquation1>(k_),
 			std::make_shared<FourPointSystemFlowEquation2>(k_),
@@ -210,7 +210,7 @@ public:
 
 private:
 	const cudaT k_;
-	std::vector<std::shared_ptr<FlowEquation>> flow_equations_;
+	std::vector<std::shared_ptr<odesolver::flowequations::FlowEquation>> flow_equations_;
 };
 
 #endif //PROJECT_FOURPOINTSYSTEMFLOWEQUATION_HPP

@@ -4,10 +4,10 @@
 #include <math.h>
 #include <tuple>
 
-#include <flow_equation_interface/jacobian_equation.hpp>
+#include <odesolver/flow_equations/jacobian_equation.hpp>
 
 
-struct ThreePointSystemJacobianEquation0 : public JacobianEquation
+struct ThreePointSystemJacobianEquation0 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation0(const cudaT k) : k_(k),
 		const_expr0_((1*1.0/2) * (pow(M_PI, -1)))
@@ -21,7 +21,7 @@ private:
 };
 
 
-struct ThreePointSystemJacobianEquation1 : public JacobianEquation
+struct ThreePointSystemJacobianEquation1 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation1(const cudaT k) : k_(k),
 		const_expr0_((4*1.0/3) * (pow(M_PI, -1)))
@@ -35,7 +35,7 @@ private:
 };
 
 
-struct ThreePointSystemJacobianEquation2 : public JacobianEquation
+struct ThreePointSystemJacobianEquation2 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation2(const cudaT k) : k_(k),
 		const_expr0_((1*1.0/6) * (pow(M_PI, -1)))
@@ -49,7 +49,7 @@ private:
 };
 
 
-struct ThreePointSystemJacobianEquation3 : public JacobianEquation
+struct ThreePointSystemJacobianEquation3 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation3(const cudaT k) : k_(k),
 		const_expr0_((1*1.0/285) * (pow(M_PI, -1)))
@@ -63,7 +63,7 @@ private:
 };
 
 
-struct ThreePointSystemJacobianEquation4 : public JacobianEquation
+struct ThreePointSystemJacobianEquation4 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation4(const cudaT k) : k_(k),
 		const_expr0_(-1140 * M_PI),
@@ -79,7 +79,7 @@ private:
 };
 
 
-struct ThreePointSystemJacobianEquation5 : public JacobianEquation
+struct ThreePointSystemJacobianEquation5 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation5(const cudaT k) : k_(k),
 		const_expr0_((1*1.0/1140) * (pow(M_PI, -1)))
@@ -93,7 +93,7 @@ private:
 };
 
 
-struct ThreePointSystemJacobianEquation6 : public JacobianEquation
+struct ThreePointSystemJacobianEquation6 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation6(const cudaT k) : k_(k),
 		const_expr0_((2*1.0/57) * (pow(M_PI, -1)))
@@ -107,7 +107,7 @@ private:
 };
 
 
-struct ThreePointSystemJacobianEquation7 : public JacobianEquation
+struct ThreePointSystemJacobianEquation7 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation7(const cudaT k) : k_(k),
 		const_expr0_((8*1.0/285) * (pow(M_PI, -1)))
@@ -121,7 +121,7 @@ private:
 };
 
 
-struct ThreePointSystemJacobianEquation8 : public JacobianEquation
+struct ThreePointSystemJacobianEquation8 : public odesolver::flowequations::JacobianEquation
 {
 	ThreePointSystemJacobianEquation8(const cudaT k) : k_(k),
 		const_expr0_(570 * M_PI),
@@ -137,12 +137,12 @@ private:
 };
 
 
-class ThreePointSystemJacobianEquations : public JacobianEquationWrapper
+class ThreePointSystemJacobianEquations : public odesolver::flowequations::JacobianEquationsWrapper
 {
 public:
 	ThreePointSystemJacobianEquations(const cudaT k) : k_(k)
 	{
-		jacobian_equations_ = std::vector<std::shared_ptr<JacobianEquation>> {
+		jacobian_equations_ = std::vector<std::shared_ptr<odesolver::flowequations::JacobianEquation>> {
 			std::make_shared<ThreePointSystemJacobianEquation0>(k),
 			std::make_shared<ThreePointSystemJacobianEquation1>(k),
 			std::make_shared<ThreePointSystemJacobianEquation2>(k),
@@ -175,7 +175,7 @@ public:
 
 private:
 	const cudaT k_;
-	std::vector<std::shared_ptr<JacobianEquation>> jacobian_equations_;
+	std::vector<std::shared_ptr<odesolver::flowequations::JacobianEquation>> jacobian_equations_;
 };
 
 #endif //PROJECT_THREEPOINTSYSTEMJACOBIAN_HPP

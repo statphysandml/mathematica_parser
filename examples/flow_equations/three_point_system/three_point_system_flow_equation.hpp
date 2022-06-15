@@ -4,10 +4,10 @@
 #include <math.h>
 #include <tuple>
 
-#include <flow_equation_interface/flow_equation.hpp>
+#include <odesolver/flow_equations/flow_equation.hpp>
 
 
-struct ThreePointSystemFlowEquation0 : public FlowEquation
+struct ThreePointSystemFlowEquation0 : public odesolver::flowequations::FlowEquation
 {
 	ThreePointSystemFlowEquation0(const cudaT k) : k_(k),
 		const_expr0_(-2 * (pow(M_PI, -1))),
@@ -25,7 +25,7 @@ private:
 };
 
 
-struct ThreePointSystemFlowEquation1 : public FlowEquation
+struct ThreePointSystemFlowEquation1 : public odesolver::flowequations::FlowEquation
 {
 	ThreePointSystemFlowEquation1(const cudaT k) : k_(k),
 		const_expr0_((6*1.0/5) * (pow(M_PI, -1))),
@@ -61,7 +61,7 @@ private:
 };
 
 
-struct ThreePointSystemFlowEquation2 : public FlowEquation
+struct ThreePointSystemFlowEquation2 : public odesolver::flowequations::FlowEquation
 {
 	ThreePointSystemFlowEquation2(const cudaT k) : k_(k),
 		const_expr0_((-5*1.0/19) * (pow(M_PI, -1))),
@@ -85,12 +85,12 @@ private:
 };
 
 
-class ThreePointSystemFlowEquations : public FlowEquationsWrapper
+class ThreePointSystemFlowEquations : public odesolver::flowequations::FlowEquationsWrapper
 {
 public:
 	ThreePointSystemFlowEquations(const cudaT k) : k_(k)
 	{
-		flow_equations_ = std::vector<std::shared_ptr<FlowEquation>> {
+		flow_equations_ = std::vector<std::shared_ptr<odesolver::flowequations::FlowEquation>> {
 			std::make_shared<ThreePointSystemFlowEquation0>(k_),
 			std::make_shared<ThreePointSystemFlowEquation1>(k_),
 			std::make_shared<ThreePointSystemFlowEquation2>(k_)
@@ -124,7 +124,7 @@ public:
 
 private:
 	const cudaT k_;
-	std::vector<std::shared_ptr<FlowEquation>> flow_equations_;
+	std::vector<std::shared_ptr<odesolver::flowequations::FlowEquation>> flow_equations_;
 };
 
 #endif //PROJECT_THREEPOINTSYSTEMFLOWEQUATION_HPP

@@ -207,5 +207,5 @@ if __name__ == "__main__":
                                max_num_of_term_operations=int(sys.argv[3]), project_path=sys.argv[4],
                                ode_solver_path=sys.argv[5])
     else:
-        generate_equations(theory="four_point_system", project_path="./examples/", ode_solver_path="../..")
+        generate_equations(theory="three_point_system", project_path="./examples/", ode_solver_path="../..")
         pass

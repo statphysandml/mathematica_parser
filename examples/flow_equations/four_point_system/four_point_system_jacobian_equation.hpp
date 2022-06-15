@@ -4,10 +4,10 @@
 #include <math.h>
 #include <tuple>
 
-#include <flow_equation_interface/jacobian_equation.hpp>
+#include <odesolver/flow_equations/jacobian_equation.hpp>
 
 
-struct FourPointSystemJacobianEquation0 : public JacobianEquation
+struct FourPointSystemJacobianEquation0 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation0(const cudaT k) : k_(k),
 		const_expr0_((1*1.0/2) * (pow(M_PI, -1)))
@@ -21,7 +21,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation1 : public JacobianEquation
+struct FourPointSystemJacobianEquation1 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation1(const cudaT k) : k_(k),
 		const_expr0_((16*1.0/3) * (pow(M_PI, -1)))
@@ -35,7 +35,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation2 : public JacobianEquation
+struct FourPointSystemJacobianEquation2 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation2(const cudaT k) : k_(k),
 		const_expr0_(4 * (pow(M_PI, -1)))
@@ -49,7 +49,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation3 : public JacobianEquation
+struct FourPointSystemJacobianEquation3 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation3(const cudaT k) : k_(k),
 		const_expr0_((1*1.0/6) * (pow(M_PI, -1)))
@@ -63,7 +63,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation4 : public JacobianEquation
+struct FourPointSystemJacobianEquation4 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation4(const cudaT k) : k_(k),
 		const_expr0_(pow(M_PI, -1))
@@ -77,7 +77,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation5 : public JacobianEquation
+struct FourPointSystemJacobianEquation5 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation5(const cudaT k) : k_(k),
 		const_expr0_(-1*1.0/2),
@@ -97,7 +97,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation6 : public JacobianEquation
+struct FourPointSystemJacobianEquation6 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation6(const cudaT k) : k_(k),
 		const_expr0_(-1*1.0/2),
@@ -119,7 +119,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation7 : public JacobianEquation
+struct FourPointSystemJacobianEquation7 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation7(const cudaT k) : k_(k),
 		const_expr0_((4*1.0/57) * (pow(M_PI, -1)))
@@ -133,7 +133,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation8 : public JacobianEquation
+struct FourPointSystemJacobianEquation8 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation8(const cudaT k) : k_(k),
 		const_expr0_(-3*1.0/2),
@@ -151,7 +151,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation9 : public JacobianEquation
+struct FourPointSystemJacobianEquation9 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation9(const cudaT k) : k_(k),
 		const_expr0_(-1*1.0/2),
@@ -169,7 +169,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation10 : public JacobianEquation
+struct FourPointSystemJacobianEquation10 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation10(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -189,7 +189,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation11 : public JacobianEquation
+struct FourPointSystemJacobianEquation11 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation11(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -207,7 +207,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation12 : public JacobianEquation
+struct FourPointSystemJacobianEquation12 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation12(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -227,7 +227,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation13 : public JacobianEquation
+struct FourPointSystemJacobianEquation13 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation13(const cudaT k) : k_(k),
 		const_expr0_(-1*1.0/2),
@@ -247,7 +247,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation14 : public JacobianEquation
+struct FourPointSystemJacobianEquation14 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation14(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -265,7 +265,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation15 : public JacobianEquation
+struct FourPointSystemJacobianEquation15 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation15(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -283,7 +283,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation16 : public JacobianEquation
+struct FourPointSystemJacobianEquation16 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation16(const cudaT k) : k_(k),
 		const_expr0_((8*1.0/285) * (pow(M_PI, -1)))
@@ -297,7 +297,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation17 : public JacobianEquation
+struct FourPointSystemJacobianEquation17 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation17(const cudaT k) : k_(k),
 		const_expr0_((-8*1.0/57) * (pow(M_PI, -1)))
@@ -311,7 +311,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation18 : public JacobianEquation
+struct FourPointSystemJacobianEquation18 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation18(const cudaT k) : k_(k),
 		const_expr0_(4*1.0/15),
@@ -337,7 +337,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation19 : public JacobianEquation
+struct FourPointSystemJacobianEquation19 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation19(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -353,7 +353,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation20 : public JacobianEquation
+struct FourPointSystemJacobianEquation20 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation20(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -371,7 +371,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation21 : public JacobianEquation
+struct FourPointSystemJacobianEquation21 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation21(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -389,7 +389,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation22 : public JacobianEquation
+struct FourPointSystemJacobianEquation22 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation22(const cudaT k) : k_(k),
 		const_expr0_((2*1.0/102236415) * (pow(M_PI, -1)))
@@ -403,7 +403,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation23 : public JacobianEquation
+struct FourPointSystemJacobianEquation23 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation23(const cudaT k) : k_(k),
 		const_expr0_(-1*1.0/2),
@@ -423,7 +423,7 @@ private:
 };
 
 
-struct FourPointSystemJacobianEquation24 : public JacobianEquation
+struct FourPointSystemJacobianEquation24 : public odesolver::flowequations::JacobianEquation
 {
 	FourPointSystemJacobianEquation24(const cudaT k) : k_(k),
 		const_expr0_(1*1.0/2),
@@ -441,12 +441,12 @@ private:
 };
 
 
-class FourPointSystemJacobianEquations : public JacobianEquationWrapper
+class FourPointSystemJacobianEquations : public odesolver::flowequations::JacobianEquationsWrapper
 {
 public:
 	FourPointSystemJacobianEquations(const cudaT k) : k_(k)
 	{
-		jacobian_equations_ = std::vector<std::shared_ptr<JacobianEquation>> {
+		jacobian_equations_ = std::vector<std::shared_ptr<odesolver::flowequations::JacobianEquation>> {
 			std::make_shared<FourPointSystemJacobianEquation0>(k),
 			std::make_shared<FourPointSystemJacobianEquation1>(k),
 			std::make_shared<FourPointSystemJacobianEquation2>(k),
@@ -495,7 +495,7 @@ public:
 
 private:
 	const cudaT k_;
-	std::vector<std::shared_ptr<JacobianEquation>> jacobian_equations_;
+	std::vector<std::shared_ptr<odesolver::flowequations::JacobianEquation>> jacobian_equations_;
 };
 
 #endif //PROJECT_FOURPOINTSYSTEMJACOBIAN_HPP

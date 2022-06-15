@@ -8,13 +8,11 @@ Note that based on the flow_equation_parser, the code can be straightforwardly e
 Installation
 -----------
 
-So far, the library needs to be build locally. This can be done by
+So far, the library needs to be build locally. This can be done by running
 
 ```bash
 cd path_to_mathematica_parser/
-
-python setup.py sdist
-pip install -e .
+pip install --use-feature=in-tree-build .
 ```
 
 Basic Example
@@ -62,12 +60,8 @@ The computation of the first ordinary differential equation can be recognized in
 Dependencies
 ------------
 
-- matplotlib
 - numpy
 - pandas
-- scipy
-- (pytorch)
-- (jupyter lab)
 
 Projects using the pystatplottools library
 ------------------------------------------

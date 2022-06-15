@@ -1,14 +1,14 @@
-#include "four_point_system_jacobian_equation.hpp"
+#include "four_points_jacobian_equation.hpp"
 
-std::string FourPointSystemJacobianEquations::model_ = "four_point_system";
-size_t FourPointSystemJacobianEquations::dim_ = 5;
+std::string FourPointsJacobianEquations::model_ = "four_points";
+size_t FourPointsJacobianEquations::dim_ = 5;
 
 
-struct comp_func_four_point_system0
+struct comp_func_four_points0
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system0(const cudaT const_expr0)
+	comp_func_four_points0(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	template <typename Tuple>
@@ -20,17 +20,17 @@ struct comp_func_four_point_system0
 };
 
 
-void FourPointSystemJacobianEquation0::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation0::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system0(const_expr0_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points0(const_expr0_));
 }
 
 
-struct comp_func_four_point_system1
+struct comp_func_four_points1
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system1(const cudaT const_expr0)
+	comp_func_four_points1(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	template <typename Tuple>
@@ -42,17 +42,17 @@ struct comp_func_four_point_system1
 };
 
 
-void FourPointSystemJacobianEquation1::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation1::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[3].begin(), variables[0].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[3].end(), variables[0].end(), derivatives.end())), comp_func_four_point_system1(const_expr0_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[3].begin(), variables[0].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[3].end(), variables[0].end(), derivatives.end())), comp_func_four_points1(const_expr0_));
 }
 
 
-struct comp_func_four_point_system2
+struct comp_func_four_points2
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system2(const cudaT const_expr0)
+	comp_func_four_points2(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	__host__ __device__
@@ -63,17 +63,17 @@ struct comp_func_four_point_system2
 };
 
 
-void FourPointSystemJacobianEquation2::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation2::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::transform(variables[0].begin(), variables[0].end(), variables[4].begin(), derivatives.begin(), comp_func_four_point_system2(const_expr0_));
+	thrust::transform(variables[0].begin(), variables[0].end(), variables[4].begin(), derivatives.begin(), comp_func_four_points2(const_expr0_));
 }
 
 
-struct comp_func_four_point_system3
+struct comp_func_four_points3
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system3(const cudaT const_expr0)
+	comp_func_four_points3(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	__host__ __device__
@@ -84,17 +84,17 @@ struct comp_func_four_point_system3
 };
 
 
-void FourPointSystemJacobianEquation3::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation3::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::transform(variables[1].begin(), variables[1].end(), variables[0].begin(), derivatives.begin(), comp_func_four_point_system3(const_expr0_));
+	thrust::transform(variables[1].begin(), variables[1].end(), variables[0].begin(), derivatives.begin(), comp_func_four_points3(const_expr0_));
 }
 
 
-struct comp_func_four_point_system4
+struct comp_func_four_points4
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system4(const cudaT const_expr0)
+	comp_func_four_points4(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	__host__ __device__
@@ -105,20 +105,20 @@ struct comp_func_four_point_system4
 };
 
 
-void FourPointSystemJacobianEquation4::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation4::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::transform(variables[2].begin(), variables[2].end(), variables[0].begin(), derivatives.begin(), comp_func_four_point_system4(const_expr0_));
+	thrust::transform(variables[2].begin(), variables[2].end(), variables[0].begin(), derivatives.begin(), comp_func_four_points4(const_expr0_));
 }
 
 
-struct comp_func_four_point_system5
+struct comp_func_four_points5
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 	const cudaT const_expr3_;
 
-	comp_func_four_point_system5(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3)
+	comp_func_four_points5(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2), const_expr3_(const_expr3) {}
 
 	template <typename Tuple>
@@ -130,13 +130,13 @@ struct comp_func_four_point_system5
 };
 
 
-void FourPointSystemJacobianEquation5::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation5::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system5(const_expr0_, const_expr1_, const_expr2_, const_expr3_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points5(const_expr0_, const_expr1_, const_expr2_, const_expr3_));
 }
 
 
-struct comp_func_four_point_system6
+struct comp_func_four_points6
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
@@ -144,7 +144,7 @@ struct comp_func_four_point_system6
 	const cudaT const_expr3_;
 	const cudaT const_expr4_;
 
-	comp_func_four_point_system6(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3, const cudaT const_expr4)
+	comp_func_four_points6(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3, const cudaT const_expr4)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2), const_expr3_(const_expr3), const_expr4_(const_expr4) {}
 
 	template <typename Tuple>
@@ -156,17 +156,17 @@ struct comp_func_four_point_system6
 };
 
 
-void FourPointSystemJacobianEquation6::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation6::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system6(const_expr0_, const_expr1_, const_expr2_, const_expr3_, const_expr4_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points6(const_expr0_, const_expr1_, const_expr2_, const_expr3_, const_expr4_));
 }
 
 
-struct comp_func_four_point_system7
+struct comp_func_four_points7
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system7(const cudaT const_expr0)
+	comp_func_four_points7(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	template <typename Tuple>
@@ -178,19 +178,19 @@ struct comp_func_four_point_system7
 };
 
 
-void FourPointSystemJacobianEquation7::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation7::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), derivatives.end())), comp_func_four_point_system7(const_expr0_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), derivatives.end())), comp_func_four_points7(const_expr0_));
 }
 
 
-struct comp_func_four_point_system8
+struct comp_func_four_points8
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system8(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
+	comp_func_four_points8(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
@@ -202,19 +202,19 @@ struct comp_func_four_point_system8
 };
 
 
-void FourPointSystemJacobianEquation8::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation8::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), derivatives.end())), comp_func_four_point_system8(const_expr0_, const_expr1_, const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), derivatives.end())), comp_func_four_points8(const_expr0_, const_expr1_, const_expr2_));
 }
 
 
-struct comp_func_four_point_system9
+struct comp_func_four_points9
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system9(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
+	comp_func_four_points9(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
@@ -226,15 +226,15 @@ struct comp_func_four_point_system9
 };
 
 
-void FourPointSystemJacobianEquation9::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation9::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system9(const_expr0_, const_expr1_, const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points9(const_expr0_, const_expr1_, const_expr2_));
 }
 
 
-struct comp_func_four_point_system14
+struct comp_func_four_points14
 {
-	comp_func_four_point_system14()
+	comp_func_four_points14()
 	{}
 
 	template <typename Tuple>
@@ -246,12 +246,12 @@ struct comp_func_four_point_system14
 };
 
 
-struct comp_func_four_point_system13
+struct comp_func_four_points13
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 
-	comp_func_four_point_system13(const cudaT const_expr0, const cudaT const_expr1)
+	comp_func_four_points13(const cudaT const_expr0, const cudaT const_expr1)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1) {}
 
 	template <typename Tuple>
@@ -263,9 +263,9 @@ struct comp_func_four_point_system13
 };
 
 
-struct comp_func_four_point_system12
+struct comp_func_four_points12
 {
-	comp_func_four_point_system12()
+	comp_func_four_points12()
 	{}
 
 	template <typename Tuple>
@@ -277,9 +277,9 @@ struct comp_func_four_point_system12
 };
 
 
-struct comp_func_four_point_system11
+struct comp_func_four_points11
 {
-	comp_func_four_point_system11()
+	comp_func_four_points11()
 	{}
 
 	template <typename Tuple>
@@ -291,42 +291,42 @@ struct comp_func_four_point_system11
 };
 
 
-struct comp_func_four_point_system10
+struct comp_func_four_points10
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 	const cudaT const_expr3_;
 
-	comp_func_four_point_system10(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3)
+	comp_func_four_points10(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2), const_expr3_(const_expr3) {}
 
 	template <typename Tuple>
 	__host__ __device__
 	void operator()(Tuple t)
 	{
-		thrust::get<9>(t) = ((pow(thrust::get<6>(t), -1)) * (pow((1 + thrust::get<4>(t)), -6)) * ((-30 * (pow(thrust::get<7>(t), 2)) * (-6706343 + (16 * thrust::get<0>(t) * (2609977 + (2 * thrust::get<0>(t) * (-1876430 + (-3673410 * thrust::get<0>(t)) + (7755021 * (pow(thrust::get<0>(t), 2))))))))) + (32 * thrust::get<7>(t) * thrust::get<6>(t) * ((-187643 * (21 + (10 * thrust::get<0>(t) * (-9 + (16 * thrust::get<0>(t)))))) + (5 * (1688787 + (4 * thrust::get<0>(t) * (-3002288 + (3408219 * thrust::get<0>(t))))) * thrust::get<8>(t))) * (1 + thrust::get<4>(t))) + (60 * (pow(thrust::get<7>(t), const_expr0_)) * (pow(thrust::get<6>(t), const_expr1_)) * (1313501 + (16 * thrust::get<0>(t) * (-1490929 + (5213144 * thrust::get<0>(t))))) * (pow((1 + thrust::get<4>(t)), 2))) + (30 * (pow(thrust::get<6>(t), 2)) * (pow((1 + thrust::get<4>(t)), 2)) * (-4274929 + (8 * thrust::get<8>(t) * (-750572 + (7079359 * thrust::get<8>(t)))) + (-5963716 * thrust::get<4>(t)) + (16390004 * thrust::get<0>(t) * (1 + thrust::get<4>(t)))))) * const_expr2_) + ((pow(thrust::get<6>(t), -1)) * thrust::get<8>(t) * (pow((1 + thrust::get<4>(t)), -7)) * (thrust::get<2>(t) + thrust::get<5>(t) + thrust::get<3>(t) + thrust::get<1>(t)) * const_expr3_);
+		thrust::get<9>(t) = ((pow(thrust::get<5>(t), -1)) * (pow((1 + thrust::get<3>(t)), -6)) * ((-30 * (pow(thrust::get<6>(t), 2)) * (-6706343 + (16 * thrust::get<0>(t) * (2609977 + (2 * thrust::get<0>(t) * (-1876430 + (-3673410 * thrust::get<0>(t)) + (7755021 * (pow(thrust::get<0>(t), 2))))))))) + (32 * thrust::get<6>(t) * thrust::get<5>(t) * ((-187643 * (21 + (10 * thrust::get<0>(t) * (-9 + (16 * thrust::get<0>(t)))))) + (5 * (1688787 + (4 * thrust::get<0>(t) * (-3002288 + (3408219 * thrust::get<0>(t))))) * thrust::get<7>(t))) * (1 + thrust::get<3>(t))) + (60 * (pow(thrust::get<6>(t), const_expr0_)) * (pow(thrust::get<5>(t), const_expr1_)) * (1313501 + (16 * thrust::get<0>(t) * (-1490929 + (5213144 * thrust::get<0>(t))))) * (pow((1 + thrust::get<3>(t)), 2))) + (30 * (pow(thrust::get<5>(t), 2)) * (pow((1 + thrust::get<3>(t)), 2)) * (-4274929 + (8 * thrust::get<7>(t) * (-750572 + (7079359 * thrust::get<7>(t)))) + (-5963716 * thrust::get<3>(t)) + (16390004 * thrust::get<0>(t) * (1 + thrust::get<3>(t)))))) * const_expr2_) + ((pow(thrust::get<5>(t), -1)) * thrust::get<7>(t) * (pow((1 + thrust::get<3>(t)), -7)) * (thrust::get<2>(t) + thrust::get<8>(t) + thrust::get<4>(t) + thrust::get<1>(t)) * const_expr3_);
 	}
 };
 
 
-void FourPointSystemJacobianEquation10::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation10::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
 	dev_vec inter_med_vec0(derivatives.size());
 	dev_vec inter_med_vec1(derivatives.size());
 	dev_vec inter_med_vec2(derivatives.size());
 	dev_vec inter_med_vec3(derivatives.size());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), inter_med_vec0.end())), comp_func_four_point_system14());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), inter_med_vec2.end())), comp_func_four_point_system13(const_expr0_, const_expr1_));
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[4].begin(), inter_med_vec3.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[4].end(), inter_med_vec3.end())), comp_func_four_point_system12());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec1.end())), comp_func_four_point_system11());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), inter_med_vec0.begin(), inter_med_vec1.begin(), inter_med_vec2.begin(), variables[0].begin(), inter_med_vec3.begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), inter_med_vec0.end(), inter_med_vec1.end(), inter_med_vec2.end(), variables[0].end(), inter_med_vec3.end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system10(const_expr0_, const_expr1_, const_expr2_, const_expr3_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), inter_med_vec0.end())), comp_func_four_points14());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), inter_med_vec2.end())), comp_func_four_points13(const_expr0_, const_expr1_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[4].begin(), inter_med_vec3.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[4].end(), inter_med_vec3.end())), comp_func_four_points12());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec1.end())), comp_func_four_points11());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), inter_med_vec0.begin(), inter_med_vec1.begin(), variables[0].begin(), inter_med_vec2.begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec3.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), inter_med_vec0.end(), inter_med_vec1.end(), variables[0].end(), inter_med_vec2.end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec3.end(), derivatives.end())), comp_func_four_points10(const_expr0_, const_expr1_, const_expr2_, const_expr3_));
 }
 
 
-struct comp_func_four_point_system18
+struct comp_func_four_points18
 {
-	comp_func_four_point_system18()
+	comp_func_four_points18()
 	{}
 
 	template <typename Tuple>
@@ -338,9 +338,9 @@ struct comp_func_four_point_system18
 };
 
 
-struct comp_func_four_point_system17
+struct comp_func_four_points17
 {
-	comp_func_four_point_system17()
+	comp_func_four_points17()
 	{}
 
 	template <typename Tuple>
@@ -352,12 +352,12 @@ struct comp_func_four_point_system17
 };
 
 
-struct comp_func_four_point_system16
+struct comp_func_four_points16
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 
-	comp_func_four_point_system16(const cudaT const_expr0, const cudaT const_expr1)
+	comp_func_four_points16(const cudaT const_expr0, const cudaT const_expr1)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1) {}
 
 	template <typename Tuple>
@@ -369,39 +369,39 @@ struct comp_func_four_point_system16
 };
 
 
-struct comp_func_four_point_system15
+struct comp_func_four_points15
 {
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system15(const cudaT const_expr2)
+	comp_func_four_points15(const cudaT const_expr2)
 		: const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
 	__host__ __device__
 	void operator()(Tuple t)
 	{
-		thrust::get<6>(t) = (pow(thrust::get<3>(t), -1)) * (pow((1 + thrust::get<1>(t)), -6)) * (thrust::get<2>(t) + thrust::get<4>(t) + thrust::get<5>(t) + thrust::get<0>(t)) * const_expr2_;
+		thrust::get<6>(t) = (pow(thrust::get<4>(t), -1)) * (pow((1 + thrust::get<3>(t)), -6)) * (thrust::get<2>(t) + thrust::get<1>(t) + thrust::get<0>(t) + thrust::get<5>(t)) * const_expr2_;
 	}
 };
 
 
-void FourPointSystemJacobianEquation11::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation11::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
 	dev_vec inter_med_vec0(derivatives.size());
 	dev_vec inter_med_vec1(derivatives.size());
 	dev_vec inter_med_vec2(derivatives.size());
 	dev_vec inter_med_vec3(derivatives.size());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec0.end())), comp_func_four_point_system18());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[1].begin(), variables[3].begin(), inter_med_vec3.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[1].end(), variables[3].end(), inter_med_vec3.end())), comp_func_four_point_system17());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec2.end())), comp_func_four_point_system16(const_expr0_, const_expr1_));
-	thrust::transform(variables[0].begin(), variables[0].end(), variables[4].begin(), inter_med_vec1.begin(), [] __host__ __device__ (const cudaT &val1, const cudaT &val2) { return 418913812698915 * (pow(val2, 2)) * (pow((1 + val1), 4)); });
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.begin(), variables[0].begin(), inter_med_vec1.begin(), variables[4].begin(), inter_med_vec2.begin(), inter_med_vec3.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.end(), variables[0].end(), inter_med_vec1.end(), variables[4].end(), inter_med_vec2.end(), inter_med_vec3.end(), derivatives.end())), comp_func_four_point_system15(const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec3.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec3.end())), comp_func_four_points18());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[1].begin(), variables[3].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[1].end(), variables[3].end(), inter_med_vec0.end())), comp_func_four_points17());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec1.end())), comp_func_four_points16(const_expr0_, const_expr1_));
+	thrust::transform(variables[0].begin(), variables[0].end(), variables[4].begin(), inter_med_vec2.begin(), [] __host__ __device__ (const cudaT &val1, const cudaT &val2) { return 418913812698915 * (pow(val2, 2)) * (pow((1 + val1), 4)); });
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.begin(), inter_med_vec1.begin(), inter_med_vec2.begin(), variables[0].begin(), variables[4].begin(), inter_med_vec3.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.end(), inter_med_vec1.end(), inter_med_vec2.end(), variables[0].end(), variables[4].end(), inter_med_vec3.end(), derivatives.end())), comp_func_four_points15(const_expr2_));
 }
 
 
-struct comp_func_four_point_system23
+struct comp_func_four_points23
 {
-	comp_func_four_point_system23()
+	comp_func_four_points23()
 	{}
 
 	template <typename Tuple>
@@ -413,11 +413,11 @@ struct comp_func_four_point_system23
 };
 
 
-struct comp_func_four_point_system22
+struct comp_func_four_points22
 {
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system22(const cudaT const_expr2)
+	comp_func_four_points22(const cudaT const_expr2)
 		: const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
@@ -429,9 +429,9 @@ struct comp_func_four_point_system22
 };
 
 
-struct comp_func_four_point_system21
+struct comp_func_four_points21
 {
-	comp_func_four_point_system21()
+	comp_func_four_points21()
 	{}
 
 	template <typename Tuple>
@@ -443,12 +443,12 @@ struct comp_func_four_point_system21
 };
 
 
-struct comp_func_four_point_system20
+struct comp_func_four_points20
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 
-	comp_func_four_point_system20(const cudaT const_expr0, const cudaT const_expr1)
+	comp_func_four_points20(const cudaT const_expr0, const cudaT const_expr1)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1) {}
 
 	template <typename Tuple>
@@ -460,42 +460,42 @@ struct comp_func_four_point_system20
 };
 
 
-struct comp_func_four_point_system19
+struct comp_func_four_points19
 {
 	const cudaT const_expr3_;
 
-	comp_func_four_point_system19(const cudaT const_expr3)
+	comp_func_four_points19(const cudaT const_expr3)
 		: const_expr3_(const_expr3) {}
 
 	template <typename Tuple>
 	__host__ __device__
 	void operator()(Tuple t)
 	{
-		thrust::get<6>(t) = (pow(thrust::get<3>(t), -1)) * (pow((1 + thrust::get<1>(t)), -6)) * (thrust::get<2>(t) + thrust::get<5>(t) + thrust::get<0>(t) + thrust::get<4>(t)) * const_expr3_;
+		thrust::get<6>(t) = (pow(thrust::get<3>(t), -1)) * (pow((1 + thrust::get<2>(t)), -6)) * (thrust::get<5>(t) + thrust::get<0>(t) + thrust::get<1>(t) + thrust::get<4>(t)) * const_expr3_;
 	}
 };
 
 
-void FourPointSystemJacobianEquation12::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation12::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
 	dev_vec inter_med_vec0(derivatives.size());
 	dev_vec inter_med_vec1(derivatives.size());
 	dev_vec inter_med_vec2(derivatives.size());
 	dev_vec inter_med_vec3(derivatives.size());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), inter_med_vec2.end())), comp_func_four_point_system23());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[4].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[4].end(), inter_med_vec0.end())), comp_func_four_point_system22(const_expr2_));
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec3.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec3.end())), comp_func_four_point_system21());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), inter_med_vec1.end())), comp_func_four_point_system20(const_expr0_, const_expr1_));
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.begin(), variables[0].begin(), inter_med_vec1.begin(), variables[4].begin(), inter_med_vec2.begin(), inter_med_vec3.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.end(), variables[0].end(), inter_med_vec1.end(), variables[4].end(), inter_med_vec2.end(), inter_med_vec3.end(), derivatives.end())), comp_func_four_point_system19(const_expr3_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), inter_med_vec2.end())), comp_func_four_points23());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[4].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[4].end(), inter_med_vec1.end())), comp_func_four_points22(const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec0.end())), comp_func_four_points21());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), inter_med_vec3.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), inter_med_vec3.end())), comp_func_four_points20(const_expr0_, const_expr1_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.begin(), inter_med_vec1.begin(), variables[0].begin(), variables[4].begin(), inter_med_vec2.begin(), inter_med_vec3.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.end(), inter_med_vec1.end(), variables[0].end(), variables[4].end(), inter_med_vec2.end(), inter_med_vec3.end(), derivatives.end())), comp_func_four_points19(const_expr3_));
 }
 
 
-struct comp_func_four_point_system26
+struct comp_func_four_points26
 {
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system26(const cudaT const_expr1, const cudaT const_expr2)
+	comp_func_four_points26(const cudaT const_expr1, const cudaT const_expr2)
 		: const_expr1_(const_expr1), const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
@@ -507,12 +507,12 @@ struct comp_func_four_point_system26
 };
 
 
-struct comp_func_four_point_system25
+struct comp_func_four_points25
 {
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system25(const cudaT const_expr1, const cudaT const_expr2)
+	comp_func_four_points25(const cudaT const_expr1, const cudaT const_expr2)
 		: const_expr1_(const_expr1), const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
@@ -524,36 +524,36 @@ struct comp_func_four_point_system25
 };
 
 
-struct comp_func_four_point_system24
+struct comp_func_four_points24
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr3_;
 
-	comp_func_four_point_system24(const cudaT const_expr0, const cudaT const_expr3)
+	comp_func_four_points24(const cudaT const_expr0, const cudaT const_expr3)
 		: const_expr0_(const_expr0), const_expr3_(const_expr3) {}
 
 	template <typename Tuple>
 	__host__ __device__
 	void operator()(Tuple t)
 	{
-		thrust::get<5>(t) = (pow(thrust::get<3>(t), const_expr0_)) * (pow(thrust::get<1>(t), -1)) * (pow((1 + thrust::get<0>(t)), -6)) * (thrust::get<2>(t) + thrust::get<4>(t)) * const_expr3_;
+		thrust::get<5>(t) = (pow(thrust::get<2>(t), const_expr0_)) * (pow(thrust::get<1>(t), -1)) * (pow((1 + thrust::get<0>(t)), -6)) * (thrust::get<3>(t) + thrust::get<4>(t)) * const_expr3_;
 	}
 };
 
 
-void FourPointSystemJacobianEquation13::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation13::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
 	dev_vec inter_med_vec0(derivatives.size());
 	dev_vec inter_med_vec1(derivatives.size());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec1.end())), comp_func_four_point_system26(const_expr1_, const_expr2_));
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec0.end())), comp_func_four_point_system25(const_expr1_, const_expr2_));
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[0].begin(), variables[4].begin(), inter_med_vec0.begin(), variables[3].begin(), inter_med_vec1.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[0].end(), variables[4].end(), inter_med_vec0.end(), variables[3].end(), inter_med_vec1.end(), derivatives.end())), comp_func_four_point_system24(const_expr0_, const_expr3_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec1.end())), comp_func_four_points26(const_expr1_, const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec0.end())), comp_func_four_points25(const_expr1_, const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[0].begin(), variables[4].begin(), variables[3].begin(), inter_med_vec0.begin(), inter_med_vec1.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[0].end(), variables[4].end(), variables[3].end(), inter_med_vec0.end(), inter_med_vec1.end(), derivatives.end())), comp_func_four_points24(const_expr0_, const_expr3_));
 }
 
 
-struct comp_func_four_point_system30
+struct comp_func_four_points30
 {
-	comp_func_four_point_system30()
+	comp_func_four_points30()
 	{}
 
 	template <typename Tuple>
@@ -565,9 +565,9 @@ struct comp_func_four_point_system30
 };
 
 
-struct comp_func_four_point_system29
+struct comp_func_four_points29
 {
-	comp_func_four_point_system29()
+	comp_func_four_points29()
 	{}
 
 	template <typename Tuple>
@@ -579,12 +579,12 @@ struct comp_func_four_point_system29
 };
 
 
-struct comp_func_four_point_system28
+struct comp_func_four_points28
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 
-	comp_func_four_point_system28(const cudaT const_expr0, const cudaT const_expr1)
+	comp_func_four_points28(const cudaT const_expr0, const cudaT const_expr1)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1) {}
 
 	template <typename Tuple>
@@ -596,41 +596,41 @@ struct comp_func_four_point_system28
 };
 
 
-struct comp_func_four_point_system27
+struct comp_func_four_points27
 {
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system27(const cudaT const_expr2)
+	comp_func_four_points27(const cudaT const_expr2)
 		: const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
 	__host__ __device__
 	void operator()(Tuple t)
 	{
-		thrust::get<5>(t) = (pow(thrust::get<3>(t), -2)) * (pow((1 + thrust::get<2>(t)), -6)) * (thrust::get<0>(t) + thrust::get<1>(t) + thrust::get<4>(t)) * const_expr2_;
+		thrust::get<5>(t) = (pow(thrust::get<3>(t), -2)) * (pow((1 + thrust::get<1>(t)), -6)) * (thrust::get<4>(t) + thrust::get<2>(t) + thrust::get<0>(t)) * const_expr2_;
 	}
 };
 
 
-void FourPointSystemJacobianEquation14::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation14::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
 	dev_vec inter_med_vec0(derivatives.size());
 	dev_vec inter_med_vec1(derivatives.size());
 	dev_vec inter_med_vec2(derivatives.size());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[1].begin(), variables[3].begin(), variables[0].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[1].end(), variables[3].end(), variables[0].end(), inter_med_vec2.end())), comp_func_four_point_system30());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[2].begin(), variables[4].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[2].end(), variables[4].end(), inter_med_vec1.end())), comp_func_four_point_system29());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec0.end())), comp_func_four_point_system28(const_expr0_, const_expr1_));
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.begin(), inter_med_vec1.begin(), variables[0].begin(), variables[4].begin(), inter_med_vec2.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.end(), inter_med_vec1.end(), variables[0].end(), variables[4].end(), inter_med_vec2.end(), derivatives.end())), comp_func_four_point_system27(const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[1].begin(), variables[3].begin(), variables[0].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[1].end(), variables[3].end(), variables[0].end(), inter_med_vec0.end())), comp_func_four_points30());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[2].begin(), variables[4].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[2].end(), variables[4].end(), inter_med_vec1.end())), comp_func_four_points29());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec2.end())), comp_func_four_points28(const_expr0_, const_expr1_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.begin(), variables[0].begin(), inter_med_vec1.begin(), variables[4].begin(), inter_med_vec2.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.end(), variables[0].end(), inter_med_vec1.end(), variables[4].end(), inter_med_vec2.end(), derivatives.end())), comp_func_four_points27(const_expr2_));
 }
 
 
-struct comp_func_four_point_system31
+struct comp_func_four_points31
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system31(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
+	comp_func_four_points31(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
@@ -642,17 +642,17 @@ struct comp_func_four_point_system31
 };
 
 
-void FourPointSystemJacobianEquation15::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation15::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system31(const_expr0_, const_expr1_, const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points31(const_expr0_, const_expr1_, const_expr2_));
 }
 
 
-struct comp_func_four_point_system32
+struct comp_func_four_points32
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system32(const cudaT const_expr0)
+	comp_func_four_points32(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	template <typename Tuple>
@@ -664,17 +664,17 @@ struct comp_func_four_point_system32
 };
 
 
-void FourPointSystemJacobianEquation16::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation16::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system32(const_expr0_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points32(const_expr0_));
 }
 
 
-struct comp_func_four_point_system33
+struct comp_func_four_points33
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system33(const cudaT const_expr0)
+	comp_func_four_points33(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	template <typename Tuple>
@@ -686,13 +686,13 @@ struct comp_func_four_point_system33
 };
 
 
-void FourPointSystemJacobianEquation17::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation17::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), derivatives.end())), comp_func_four_point_system33(const_expr0_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), derivatives.end())), comp_func_four_points33(const_expr0_));
 }
 
 
-struct comp_func_four_point_system34
+struct comp_func_four_points34
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
@@ -702,7 +702,7 @@ struct comp_func_four_point_system34
 	const cudaT const_expr5_;
 	const cudaT const_expr6_;
 
-	comp_func_four_point_system34(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3, const cudaT const_expr4, const cudaT const_expr5, const cudaT const_expr6)
+	comp_func_four_points34(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3, const cudaT const_expr4, const cudaT const_expr5, const cudaT const_expr6)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2), const_expr3_(const_expr3), const_expr4_(const_expr4), const_expr5_(const_expr5), const_expr6_(const_expr6) {}
 
 	template <typename Tuple>
@@ -714,18 +714,18 @@ struct comp_func_four_point_system34
 };
 
 
-void FourPointSystemJacobianEquation18::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation18::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system34(const_expr0_, const_expr1_, const_expr2_, const_expr3_, const_expr4_, const_expr5_, const_expr6_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points34(const_expr0_, const_expr1_, const_expr2_, const_expr3_, const_expr4_, const_expr5_, const_expr6_));
 }
 
 
-struct comp_func_four_point_system35
+struct comp_func_four_points35
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 
-	comp_func_four_point_system35(const cudaT const_expr0, const cudaT const_expr1)
+	comp_func_four_points35(const cudaT const_expr0, const cudaT const_expr1)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1) {}
 
 	template <typename Tuple>
@@ -737,15 +737,15 @@ struct comp_func_four_point_system35
 };
 
 
-void FourPointSystemJacobianEquation19::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation19::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system35(const_expr0_, const_expr1_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points35(const_expr0_, const_expr1_));
 }
 
 
-struct comp_func_four_point_system40
+struct comp_func_four_points40
 {
-	comp_func_four_point_system40()
+	comp_func_four_points40()
 	{}
 
 	template <typename Tuple>
@@ -757,12 +757,12 @@ struct comp_func_four_point_system40
 };
 
 
-struct comp_func_four_point_system39
+struct comp_func_four_points39
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 
-	comp_func_four_point_system39(const cudaT const_expr0, const cudaT const_expr1)
+	comp_func_four_points39(const cudaT const_expr0, const cudaT const_expr1)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1) {}
 
 	template <typename Tuple>
@@ -774,9 +774,9 @@ struct comp_func_four_point_system39
 };
 
 
-struct comp_func_four_point_system38
+struct comp_func_four_points38
 {
-	comp_func_four_point_system38()
+	comp_func_four_points38()
 	{}
 
 	template <typename Tuple>
@@ -788,9 +788,9 @@ struct comp_func_four_point_system38
 };
 
 
-struct comp_func_four_point_system37
+struct comp_func_four_points37
 {
-	comp_func_four_point_system37()
+	comp_func_four_points37()
 	{}
 
 	template <typename Tuple>
@@ -802,43 +802,43 @@ struct comp_func_four_point_system37
 };
 
 
-struct comp_func_four_point_system36
+struct comp_func_four_points36
 {
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system36(const cudaT const_expr2)
+	comp_func_four_points36(const cudaT const_expr2)
 		: const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
 	__host__ __device__
 	void operator()(Tuple t)
 	{
-		thrust::get<5>(t) = (pow((1 + thrust::get<1>(t)), -7)) * (thrust::get<0>(t) + thrust::get<3>(t) + thrust::get<2>(t) + thrust::get<4>(t)) * const_expr2_;
+		thrust::get<5>(t) = (pow((1 + thrust::get<2>(t)), -7)) * (thrust::get<3>(t) + thrust::get<1>(t) + thrust::get<0>(t) + thrust::get<4>(t)) * const_expr2_;
 	}
 };
 
 
-void FourPointSystemJacobianEquation20::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation20::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
 	dev_vec inter_med_vec0(derivatives.size());
 	dev_vec inter_med_vec1(derivatives.size());
 	dev_vec inter_med_vec2(derivatives.size());
 	dev_vec inter_med_vec3(derivatives.size());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), inter_med_vec3.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), inter_med_vec3.end())), comp_func_four_point_system40());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), inter_med_vec1.end())), comp_func_four_point_system39(const_expr0_, const_expr1_));
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[4].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[4].end(), inter_med_vec2.end())), comp_func_four_point_system38());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec0.end())), comp_func_four_point_system37());
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.begin(), variables[0].begin(), inter_med_vec1.begin(), inter_med_vec2.begin(), inter_med_vec3.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.end(), variables[0].end(), inter_med_vec1.end(), inter_med_vec2.end(), inter_med_vec3.end(), derivatives.end())), comp_func_four_point_system36(const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), inter_med_vec3.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), inter_med_vec3.end())), comp_func_four_points40());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[3].begin(), variables[4].begin(), inter_med_vec0.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[3].end(), variables[4].end(), inter_med_vec0.end())), comp_func_four_points39(const_expr0_, const_expr1_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[2].begin(), variables[0].begin(), variables[4].begin(), inter_med_vec1.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[2].end(), variables[0].end(), variables[4].end(), inter_med_vec1.end())), comp_func_four_points38());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), inter_med_vec2.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), inter_med_vec2.end())), comp_func_four_points37());
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.begin(), inter_med_vec1.begin(), variables[0].begin(), inter_med_vec2.begin(), inter_med_vec3.begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(inter_med_vec0.end(), inter_med_vec1.end(), variables[0].end(), inter_med_vec2.end(), inter_med_vec3.end(), derivatives.end())), comp_func_four_points36(const_expr2_));
 }
 
 
-struct comp_func_four_point_system41
+struct comp_func_four_points41
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system41(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
+	comp_func_four_points41(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
@@ -850,17 +850,17 @@ struct comp_func_four_point_system41
 };
 
 
-void FourPointSystemJacobianEquation21::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation21::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system41(const_expr0_, const_expr1_, const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points41(const_expr0_, const_expr1_, const_expr2_));
 }
 
 
-struct comp_func_four_point_system42
+struct comp_func_four_points42
 {
 	const cudaT const_expr0_;
 
-	comp_func_four_point_system42(const cudaT const_expr0)
+	comp_func_four_points42(const cudaT const_expr0)
 		: const_expr0_(const_expr0) {}
 
 	template <typename Tuple>
@@ -872,20 +872,20 @@ struct comp_func_four_point_system42
 };
 
 
-void FourPointSystemJacobianEquation22::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation22::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system42(const_expr0_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points42(const_expr0_));
 }
 
 
-struct comp_func_four_point_system43
+struct comp_func_four_points43
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 	const cudaT const_expr3_;
 
-	comp_func_four_point_system43(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3)
+	comp_func_four_points43(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2, const cudaT const_expr3)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2), const_expr3_(const_expr3) {}
 
 	template <typename Tuple>
@@ -897,19 +897,19 @@ struct comp_func_four_point_system43
 };
 
 
-void FourPointSystemJacobianEquation23::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation23::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system43(const_expr0_, const_expr1_, const_expr2_, const_expr3_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points43(const_expr0_, const_expr1_, const_expr2_, const_expr3_));
 }
 
 
-struct comp_func_four_point_system44
+struct comp_func_four_points44
 {
 	const cudaT const_expr0_;
 	const cudaT const_expr1_;
 	const cudaT const_expr2_;
 
-	comp_func_four_point_system44(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
+	comp_func_four_points44(const cudaT const_expr0, const cudaT const_expr1, const cudaT const_expr2)
 		: const_expr0_(const_expr0), const_expr1_(const_expr1), const_expr2_(const_expr2) {}
 
 	template <typename Tuple>
@@ -921,8 +921,8 @@ struct comp_func_four_point_system44
 };
 
 
-void FourPointSystemJacobianEquation24::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void FourPointsJacobianEquation24::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_point_system44(const_expr0_, const_expr1_, const_expr2_));
+	thrust::for_each(thrust::make_zip_iterator(thrust::make_tuple(variables[1].begin(), variables[0].begin(), variables[4].begin(), variables[3].begin(), variables[2].begin(), derivatives.begin())),thrust::make_zip_iterator(thrust::make_tuple(variables[1].end(), variables[0].end(), variables[4].end(), variables[3].end(), variables[2].end(), derivatives.end())), comp_func_four_points44(const_expr0_, const_expr1_, const_expr2_));
 }
 

@@ -1,2 +1,5 @@
+dist/
+build/
 .idea/
 __pycache__/
+mathematicaparser.egg-info/

@@ -3,6 +3,20 @@ Mathematica Parser: Translate mathematica expressions into any programming langu
 
 The python library parses mathematical functions that are exported from mathematica. The mathematical operations are represented within the flow_equation_parser.py file as a tree. This tree can be used to generate code in any programming language to perform the same mathematical operation. We do this here on the example of a set of ordinary differential equations and convert the equation into Thrust code that can be run with CUDA on a GPU.
 
+Note that based on the flow_equation_parser, the code can be straightforwardly extended to support other programming languages and types of equations.
+
+Installation
+-----------
+
+So far, the library needs to be build locally. This can be done by
+
+```bash
+cd path_to_mathematica_parser/
+
+python setup.py sdist
+pip install -e .
+```
+
 Basic Example
 -------------
 
@@ -23,32 +37,47 @@ List[Equal[Derivative[1][x][k], Times[10.`, Plus[Times[-1, x[k]], y[k]]]], Equal
 ```
 Note that in this case k refers to the time.
 
-The python code in flow_euquation_parser.py generates a tree in a pandas dataframe out of this expression (example for the first ordinary differential equation):
+By executing the following python code in the top-level directory of the repository:
+
+```python
+from mathematicaparser.odevisualization.generators import generate_equations
+generate_equations("lorentz_attractor", "./examples/flow_equations/lorentz_attractor/")
+```
+
+the mathematicaparser.core.flow_euquation_parser.FlowEquationParser class generates a tree in a pandas dataframe out of the above expression (example for the first ordinary differential equation):
 
 ![alt text](doc/operation_tree.jpg)
 
-Based on this tree, thrust cuda code is generated with the help of the code in thrust_meta_programmer.py
+Based on this tree, thrust cuda code is generated with the help of the modules of mathematicaparser.odevisualization
 
 ```c++
-struct LorentzAttractorFlowEquation0 : public FlowEquation
+void LorentzAttractorFlowEquation0::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
 {
-	LorentzAttractorFlowEquation0(const cudaT k_) : k(k_)
-	{}
-
-	void operator() (DimensionIteratorC &derivatives, const DevDatC &variables) override
-	{
-		thrust::transform(variables[0].begin(), variables[0].end(), variables[1].begin(), derivatives.begin(), [] __host__ __device__ (const cudaT &val1, const cudaT &val2) { return 10 * ((-1 * val1) + val2); });
-	}
-
-private:
-	const cudaT k;
-
-};
+	thrust::transform(variables[0].begin(), variables[0].end(), variables[1].begin(), derivatives.begin(), [] __host__ __device__ (const cudaT &val1, const cudaT &val2) { return 10 * ((-1 * val1) + val2); });
+}
 ```
 
-The computation of the first ordinary differential equation can be recognized in the lambda expression of the flow equation.
+The computation of the first ordinary differential equation can be recognized in the lambda expression of the flow equation of the code snippet.
+
+Dependencies
+------------
+
+- matplotlib
+- numpy
+- pandas
+- scipy
+- (pytorch)
+- (jupyter lab)
+
+Projects using the pystatplottools library
+------------------------------------------
+
+- ODEVisualization (https://github.com/statphysandml/ODEVisualization)
+
 
 Support and Development
 ----------------------
 
-An executable example will follow soon. If you want to use the project already, do not hesitate to contact us per mail for help: statphysandml@thphys.uni-heidelberg.de.
+For bug reports/suggestions/complaints please file an issue on GitHub.
+
+Or start a discussion on our mailing list: statphysandml@thphys.uni-heidelberg.de.

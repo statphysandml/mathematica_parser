@@ -447,3 +447,7 @@ class FlowEquationParser:
         FlowEquationParser.time_variable = None
         FlowEquationParser.coupling_appendix = None
         FlowEquationParser.couplings = []
+
+    @staticmethod
+    def reset_counters():
+        FlowEquationParser.num_inter_expr = 0

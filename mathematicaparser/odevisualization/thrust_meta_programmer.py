@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 
@@ -367,3 +368,8 @@ class ThrustMetaProgrammer:
     @staticmethod
     def reset_counters():
         ThrustMetaProgrammer.comp_functor_counter = 0
+
+    @staticmethod
+    def make_dir_not_exists(dir):
+        if not os.path.exists(dir):
+            os.makedirs(dir)

@@ -1,4 +1,3 @@
-import sys
 
 
 def flow_equation_generator(folder, filename):
@@ -78,11 +77,13 @@ def jacobian_generator(folder, filename):
                 yield str(row_idx) + ", " + str(col_idx), row[start_index:end_index]
 
 
-
-def generate_equations(theory_name, equation_path=None, max_num_of_terms=9, max_num_of_term_operations=40):
+def generate_equations(theory_name, equation_path, project_path=None, max_num_of_terms=9, max_num_of_term_operations=40):
     from mathematicaparser.core.flow_equation_parser import FlowEquationParser
     from mathematicaparser.odevisualization.flow_equation_meta_programmer import FlowEquationMetaProgrammer
     from mathematicaparser.odevisualization.jacobian_equation_meta_programmer import JacobianEquationMetaProgrammer
+
+    if project_path is None:
+        project_path = equation_path
 
     FlowEquationParser.clear_static_variables()
 
@@ -106,7 +107,7 @@ def generate_equations(theory_name, equation_path=None, max_num_of_terms=9, max_
 
     FlowEquationMetaProgrammer.reset_counters()
     flow_equation_meta_programmer = FlowEquationMetaProgrammer(
-        project_path=equation_path,
+        project_path=project_path,
         theory_name=theory_name,
         dim=dim,
         time_variable=time_variable,
@@ -140,9 +141,8 @@ def generate_equations(theory_name, equation_path=None, max_num_of_terms=9, max_
 
     ''' Write thrust modules for the computation of the Jacobian matrix '''
 
-    JacobianEquationMetaProgrammer.reset_counters()
     jacobian_equation_meta_programmer = JacobianEquationMetaProgrammer(
-        project_path=equation_path,
+        project_path=project_path,
         theory_name=theory_name,
         dim=dim,
         base_struct_name="JacobianEquation"

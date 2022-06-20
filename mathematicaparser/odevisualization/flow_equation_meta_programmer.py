@@ -1,3 +1,4 @@
+import os
 from mathematicaparser.odevisualization.thrust_meta_programmer import ThrustMetaProgrammer
 
 
@@ -6,8 +7,10 @@ class FlowEquationMetaProgrammer(ThrustMetaProgrammer):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.header_file = kwargs.get("project_path") + "/" + self.theory_name + "_flow_equation.hpp"
-        self.source_file = kwargs.get("project_path") + "/" + self.theory_name + "_flow_equation.cu"
+        self.make_dir_not_exists(kwargs.get("project_path") + "/include/" + self.theory_name + "/")
+        self.header_file = kwargs.get("project_path") + "/include/" + self.theory_name + "/" + self.theory_name + "_flow_equation.hpp"
+        self.make_dir_not_exists(kwargs.get("project_path") + "/src/")
+        self.source_file = kwargs.get("project_path") + "/src/" + self.theory_name + "_flow_equation.cu"
 
     def write_hpp_header(self):
         ifndef_name = ''.join([item.upper() for item in self.theory_name.split(sep="_")])
@@ -64,7 +67,7 @@ class FlowEquationMetaProgrammer(ThrustMetaProgrammer):
 
     def write_cu_header(self):
         with open(self.source_file, "w") as f:
-            f.write('#include "' + self.theory_name + '_flow_equation.hpp"\n\n')
+            f.write('#include <' + self.theory_name + '/' + self.theory_name + '_flow_equation.hpp>\n\n')
             f.write('std::string ' + self.class_name + self.base_struct_name + 's::model_ = "' + self.theory_name + '";\n'
                     'size_t ' + self.class_name + self.base_struct_name + 's::dim_ = ' + str(self.dim) + ';\n'
                     'std::string ' + self.class_name + self.base_struct_name + 's::explicit_variable_ = "' + self.time_variable + '";\n'

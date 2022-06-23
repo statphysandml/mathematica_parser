@@ -20,23 +20,23 @@ class FlowEquationMetaProgrammer(ThrustMetaProgrammer):
                     '#define PROJECT_' + ifndef_name + 'FLOWEQUATION_HPP\n\n'
                     '#include <math.h>\n'
                     '#include <tuple>\n\n'
-                    '#include <odesolver/flow_equations/flow_equation.hpp>\n\n')
+                    '#include <flowequations/flow_equation.hpp>\n\n')
 
     def write_hpp_footer(self):
         ifndef_name = ''.join([item.upper() for item in self.theory_name.split(sep="_")])
 
         with open(self.header_file, "a") as f:
-            f.write('\nclass ' + self.class_name + self.base_struct_name + 's : public odesolver::flowequations::' + self.base_struct_name + 'sWrapper\n'
+            f.write('\nclass ' + self.class_name + self.base_struct_name + 's : public flowequations::' + self.base_struct_name + 'sWrapper\n'
                     '{\n'
                     'public:\n'
                     '\t' + self.class_name + self.base_struct_name + 's(const cudaT k) : k_(k)\n'
                     '\t{\n'
-                    '\t\tflow_equations_ = std::vector<std::shared_ptr<odesolver::flowequations::' + self.base_struct_name + '>> {\n')
+                    '\t\tflow_equations_ = std::vector<std::shared_ptr<flowequations::' + self.base_struct_name + '>> {\n')
             for dim_index in range(self.dim-1):
                 f.write('\t\t\tstd::make_shared<' + self.class_name + self.base_struct_name + str(dim_index) + '>(k_),\n')
             f.write('\t\t\tstd::make_shared<' + self.class_name + self.base_struct_name + str(self.dim-1) + '>(k_)\n\t\t};\n')
             f.write('\t}\n\n'
-                    '\tvoid operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables, '
+                    '\tvoid operator() (devdat::DimensionIteratorC &derivatives, const devdat::DevDatC &variables, '
                     'const int dim_index) override\n'
                     '\t{\n'
                     '\t\t(*flow_equations_[dim_index])(derivatives, variables);\n'
@@ -61,7 +61,7 @@ class FlowEquationMetaProgrammer(ThrustMetaProgrammer):
                     '\t}\n\n'
                     'private:\n'
                     '\tconst cudaT k_;\n'
-                    '\tstd::vector<std::shared_ptr<odesolver::flowequations::' + self.base_struct_name + '>> flow_equations_;\n'
+                    '\tstd::vector<std::shared_ptr<flowequations::' + self.base_struct_name + '>> flow_equations_;\n'
                     '};\n\n'
                     '#endif //PROJECT_' + ifndef_name + 'FLOWEQUATION_HPP\n')
 

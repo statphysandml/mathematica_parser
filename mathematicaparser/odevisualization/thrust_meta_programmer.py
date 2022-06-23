@@ -84,7 +84,7 @@ class ThrustMetaProgrammer:
 
         with open(self.header_file, "a") as f:
             # Struct name + constructor
-            f.write('\nstruct ' + self.class_name + self.base_struct_name + str(dim_index) + ' : public odesolver::flowequations::' + self.base_struct_name + '\n'
+            f.write('\nstruct ' + self.class_name + self.base_struct_name + str(dim_index) + ' : public flowequations::' + self.base_struct_name + '\n'
                     '{\n'
                     '\t' + self.class_name + self.base_struct_name + str(dim_index) + '(const cudaT k) : k_(k)')
 
@@ -93,7 +93,7 @@ class ThrustMetaProgrammer:
             f.write('\n\t{}\n\n')
 
             # void operator()
-            f.write('\tvoid operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables) override;\n\n')
+            f.write('\tvoid operator() (devdat::DimensionIteratorC &derivatives, const devdat::DevDatC &variables) override;\n\n')
 
             # private variables
             f.write('private:\n'
@@ -108,7 +108,7 @@ class ThrustMetaProgrammer:
                 f.write(comp_functor)
 
             # void operator()
-            f.write('\nvoid ' + self.class_name + self.base_struct_name + str(dim_index) + '::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)\n'
+            f.write('\nvoid ' + self.class_name + self.base_struct_name + str(dim_index) + '::operator() (devdat::DimensionIteratorC &derivatives, const devdat::DevDatC &variables)\n'
                     '{\n')
 
             # write initialization of intermediate vectors

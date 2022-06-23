@@ -49,7 +49,7 @@ the mathematicaparser.core.flow_euquation_parser.FlowEquationParser class genera
 Based on this tree, thrust cuda code is generated with the help of the modules of mathematicaparser.odevisualization
 
 ```c++
-void LorentzAttractorFlowEquation0::operator() (odesolver::DimensionIteratorC &derivatives, const odesolver::DevDatC &variables)
+void LorentzAttractorFlowEquation0::operator() (devdat::DimensionIteratorC &derivatives, const devdat::DevDatC &variables)
 {
 	thrust::transform(variables[0].begin(), variables[0].end(), variables[1].begin(), derivatives.begin(), [] __host__ __device__ (const cudaT &val1, const cudaT &val2) { return 10 * ((-1 * val1) + val2); });
 }
